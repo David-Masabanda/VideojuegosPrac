@@ -22,7 +22,6 @@ public class ActorJugador extends Actor {
     public ActorJugador(Texture texturaJ) {
         this.texturaJ = texturaJ;
         setSize(texturaJ.getWidth(),texturaJ.getHeight());
-
         this.alive=true;
     }
 

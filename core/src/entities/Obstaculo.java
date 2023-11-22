@@ -28,11 +28,12 @@ public class Obstaculo extends Actor {
         def.position.set(position);
         def.type=BodyDef.BodyType.StaticBody;
 
-        body= world.createBody(def);
+        setBody(world.createBody(def));
 
         PolygonShape polygonShape= new PolygonShape();
-        polygonShape.setAsBox(1,1);
-        fixture= body.createFixture(polygonShape,1);
+        polygonShape.setAsBox(0.125f,0.5f);
+        setFixture(getBody().createFixture(polygonShape,1));
+        fixture.setUserData("obstaculo");
         polygonShape.dispose();
         setSize(Constans.pixelInMiddle,Constans.pixelInMiddle);
 
@@ -40,7 +41,28 @@ public class Obstaculo extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        setPosition((body.getPosition().x)*Constans.pixelInMiddle,body.getPosition().y*Constans.pixelInMiddle);
+        setPosition((getBody().getPosition().x)*Constans.pixelInMiddle, getBody().getPosition().y+1.2f*Constans.pixelInMiddle);
         batch.draw(texture,getX(),getY(),getWidth(),getHeight());
+    }
+
+    public void liberar(){
+        body.destroyFixture(fixture);
+        world.destroyBody(body);
+    }
+
+    public Body getBody() {
+        return body;
+    }
+
+    public void setBody(Body body) {
+        this.body = body;
+    }
+
+    public Fixture getFixture() {
+        return fixture;
+    }
+
+    public void setFixture(Fixture fixture) {
+        this.fixture = fixture;
     }
 }

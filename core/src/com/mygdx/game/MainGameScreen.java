@@ -31,8 +31,8 @@ public class MainGameScreen extends BaseScreen{
         this.stage.addActor(jugador);
         this.stage.addActor(roca);
 
-        this.jugador.setPosition(50,100);
-        this.roca.setPosition(1200,100);
+        this.jugador.setPosition(20,100);
+        this.roca.setPosition(400,100);
     }
 
     @Override
@@ -45,8 +45,8 @@ public class MainGameScreen extends BaseScreen{
         Gdx.gl.glClearColor(0.9f,0,0.9f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
-        colisiones();
         stage.draw();
+        colisiones();
     }
 
     @Override

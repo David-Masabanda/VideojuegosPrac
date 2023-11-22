@@ -28,6 +28,8 @@ public class ActorRoca extends Actor {
     public void act(float delta) {
         if (isAlive()){
             setX(getX()-250*delta);
+        }else {
+            setX(getX());
         }
 
 

@@ -45,16 +45,17 @@ public class Box2DScreen extends BaseScreen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         float velocidadY= body.getLinearVelocity().y;
-        body.setLinearVelocity(15,velocidadY);
+        body.setLinearVelocity(10,velocidadY);
 
+        if (Gdx.input.isTouched() && colisionDetectada==false){
+            saltar();
+        }
         if (colisionDetectada==true){
             body.setLinearVelocity(0,0);
 //            colisionDetectada=false;
         }
 
-        if (Gdx.input.isTouched() && colisionDetectada==false){
-            saltar();
-        }
+
 
         world.step(delta, 6, 2);
         camera.update();
@@ -67,7 +68,7 @@ public class Box2DScreen extends BaseScreen {
         world = new World(new Vector2(0, -10), true);
         renderer = new Box2DDebugRenderer();
         camera = new OrthographicCamera( 32, 18);
-        camera.translate(0,-2);
+        camera.translate(0,1);
 
         world.setContactListener(new ContactListener() {
             @Override
